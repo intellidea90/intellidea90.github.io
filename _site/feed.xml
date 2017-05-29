@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Modern Blog</title>
+        <description>Modern-Blog A Elegant template for Jekyll</description>
+        <link>http://localhost:4000/</link>
+        <atom:link href="http://localhost:4000/feed.xml" rel="self"
+        type="application/rss+xml"/>
+        <pubDate>Mon, 29 May 2017 23:20:48 +0200</pubDate>
+        <lastBuildDate>Mon, 29 May 2017 23:20:48 +0200</lastBuildDate>
+        <generator>Jekyll v3.4.3</generator>
+        
+        <item>
+            <title>Ubuntu/Mac System Setup for Machine Learning</title>
+            <description>&lt;h1 id=&quot;how-to-prepare-your-ubuntu-1604-or-macos-sierra-10125-system-for-machine-learning-cpu-configuration&quot;&gt;How to prepare your Ubuntu 16.04 or macOS Sierra 10.12.5 system for Machine Learning (CPU configuration)&lt;/h1&gt;
+
+&lt;p&gt;Machine Learning is one of the most interesting and emerging research field in Computer Science today. Hundreds of efficient libraries are getting published each day. Often it’s very difficult for students to keep up with this pace and setup a personal system for practice machine learning. Keeping that in mind, we’ve listed a series of simple steps to setup a working ML system from scratch through command-line with required explanation for each command.&lt;/p&gt;
+
+&lt;p&gt;As Python has been the most widely used and user friendly coding language for ML purpose, we are providing instructions for Python 2.7 (or higher). Similarly, Python 3 (or higher) can also be installed depending on specific user requirements.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-1-pre-requisites&quot;&gt;Step 1: Pre-requisites&lt;/h3&gt;
+&lt;p&gt;Before we start on python setup, make sure your system fulfills the some &lt;strong&gt;pre-requisites&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Check if your mac system has brew installed as package manager. If not, follow the &lt;a href=&quot;https://brew.sh/&quot;&gt;link&lt;/a&gt; for installation of Homebrew. If brew is already in your system, then update it:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew update
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew doctor
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;If something is wrong with your brew installation, brew doctor will tell you the commands to rectify those.&lt;/p&gt;
+
+&lt;p&gt;Ubuntu users, update your system:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-2-installing-python-and-anaconda&quot;&gt;Step 2: Installing Python and Anaconda&lt;/h3&gt;
+&lt;p&gt;Check your existing python location:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;which python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In almost every unix system (Ubuntu or Mac) python comes pre-installed with the OS, but we recommend setting up a separate python for ML work so that in case something goes wrong the base OS doesn’t have to handle that. For installing a new python, we suggest Anaconda. This can be downloaded from &lt;a href=&quot;https://www.continuum.io/downloads&quot;&gt;here&lt;/a&gt;.
+Once installed, run the commands:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;which python
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;which conda
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;to check whether you now have anaconda location as default python location. If not, add the anaconda path to your bash profile. Here, we assume it was installed in ~/anaconda. Open ~/.bash_profile (~/.bashrc for Ubuntu users) in your favourite editor, add the line, and save it.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/anaconda/bin:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Restart your terminal session via ( for Ubuntu, $ source ~/.bashrc)&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you have already installed Anaconda then check if it is updated, else update it.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;conda -V
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;conda update conda
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Type ‘&lt;strong&gt;y&lt;/strong&gt;’ to proceed, if the terminal asks for it for updating any specific packages(s).&lt;/p&gt;
+
+&lt;h3 id=&quot;step-3-creating-virtual-anaconda-environment&quot;&gt;Step 3: Creating virtual Anaconda environment&lt;/h3&gt;
+
+&lt;p&gt;Now, why do we need to create virtual conda environment?&lt;/p&gt;
+
+&lt;p&gt;//&lt;/p&gt;
+
+&lt;p&gt;Create a conda environment for Python version=2.7 with an alias. The same can be done for Python version=3.5 as well. It will install all the Python libraries associated with the Python version mentioned in the command.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;conda create -n &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;name_of_the_environment] &lt;span class=&quot;nv&quot;&gt;python&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=[&lt;/span&gt;version]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;If Your default python is not Anaconda then you need to explicitly mention that in your command so that the environment uses Anaconda and not your system’s default python.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda create -n &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;name_of_the_environment] &lt;span class=&quot;nv&quot;&gt;python&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=[&lt;/span&gt;version] anaconda
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Press ‘&lt;strong&gt;y&lt;/strong&gt;’ when the prompt asks for your confirmation to proceed further.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-4-update-pip&quot;&gt;Step 4: Update pip&lt;/h3&gt;
+
+&lt;p&gt;Update pip for Python 2.7:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;pip install --upgrade
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Same can be done for Python 3.5:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip3 install --upgrade
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-5-activate-the-virtual-environment&quot;&gt;Step 5: Activate the virtual environment&lt;/h3&gt;
+
+&lt;p&gt;Now, why do we need to activate the virtual conda environment?&lt;/p&gt;
+
+&lt;p&gt;We need to activate the virtual environment everytime we need to switch to the environment. Activation of the conda environment will modify the current path you are in and will get switched to the virtual environment you have created. Untill you deactivate the virtual environment, the shell variables will all point to the same. The command prompt will show the alias you have created for your environment. The following activates the environment:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;activate &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;name_of_the_environment]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-6-update-pip-inside-your-virtual-environment&quot;&gt;Step 6: Update pip inside your virtual environment&lt;/h3&gt;
+
+&lt;p&gt;Same as we did before outside the virtual environment, we can update pip for Python 2.7 inside the environment now.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;pip install --upgrade
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Same can be done for Python 3.5:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip3 install --upgrade
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-7-installing-tensorflow-in-the-virtual-environment&quot;&gt;Step 7: Installing Tensorflow in the virtual environment&lt;/h3&gt;
+
+&lt;p&gt;Install Tensorflow inside this newly created virtual environment for Python 2.7.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;pip install tensorflow
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Or you can run the following command for Python 3.5&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;pip3 install tensorflow
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Outside this environment or once you deactivate the environment tensorflow will no longer be available.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-8-check-successful-installation-of-tensorflow&quot;&gt;Step 8: Check successful installation of Tensorflow&lt;/h3&gt;
+
+&lt;p&gt;Once, you have installed Tensorflow into your environment, check if it has been installed successfully.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;python
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;import tensorflow
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;If the prompt returns after executing these two command, then the installation is working fine.&lt;/p&gt;
+
+&lt;p&gt;Now, get out of the Python prompt:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-9-install-additional-python-packages-like-keras&quot;&gt;Step 9: Install additional Python packages like Keras&lt;/h3&gt;
+
+&lt;p&gt;We can install additional Python package inside this  environment like Keras, which will use Tensorflow as backend. For Python 2.7:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;pip install keras
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Or for Python 3.5 it goes:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;pip3 install keras
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Caution: if you are still inside the Python prompt then run &lt;code class=&quot;highlighter-rouge&quot;&gt;exit()&lt;/code&gt; command first and then install keras.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-10-check-successful-installation-of-keras&quot;&gt;Step 10: Check successful installation of Keras&lt;/h3&gt;
+
+&lt;p&gt;Similarly, check if Keras has been installed successfully.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;python
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;import keras
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;If the prompt returns after executing these two command, then the installation is working fine.&lt;/p&gt;
+
+&lt;p&gt;Once again, get out of the Python prompt:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-11-deactivating-a-virtual-environment&quot;&gt;Step 11: Deactivating a virtual environment&lt;/h3&gt;
+
+&lt;p&gt;To terminate a session in the virtual environment, run the command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;deactivate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;after the word deactivate name of the environment is optional. If you do not put it explicitly it will terminate the current virtual environment you are in. Once you deactivate the virtual environment, you get back to your old path.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Delete a no longer needed virtual environment&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To delete a conda environment, enter the following, where yourenvname is the name of the environment you wish to delete.
+conda remove -n yourenvname -all&lt;/p&gt;
+
+&lt;p&gt;conda info -e
+  257  python
+  258  jupyter notebook
+  259  conda install nbconda
+  260  conda install nb_conda
+  261  jupyter notebook
+  262  conda install ipykernel
+  263  conda install jupyter
+  264  jupyter notebook
+  265  source deactivate tf
+  266  conda install nb_conda
+  267  source activate tf
+  268  jupyter notebook
+  269  jupyter notebook
+  270  source deactivate tf
+  271  history
+  272  tree Blog
+  273  history » ~/Desktop/Coding/Blog/Dl_prep_script.txt
+subl ~/.bash_profile
+source ~/.bash_profile
+  alias tfactivate=”source activate tf”
+alias thactivate=”source activate th”
+alias deactivate=”source deactivate”
+alias bashreboot=”source ~/.bash_profile”&lt;/p&gt;
+
+&lt;p&gt;Basic useful feature list:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ctrl+S / Cmd+S to save the file&lt;/li&gt;
+  &lt;li&gt;Ctrl+Shift+S / Cmd+Shift+S to choose to save as Markdown or HTML&lt;/li&gt;
+  &lt;li&gt;Drag and drop a file into here to load it&lt;/li&gt;
+  &lt;li&gt;File contents are saved in the URL so you can share files&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’m no good at writing sample / filler text, so go write something yourself.&lt;/p&gt;
+
+&lt;p&gt;Look, a list!&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;foo&lt;/li&gt;
+  &lt;li&gt;bar&lt;/li&gt;
+  &lt;li&gt;baz&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And here’s some code! :+1:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'div'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'I am a div.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is &lt;a href=&quot;https://github.com/jbt/markdown-editor&quot;&gt;on GitHub&lt;/a&gt; so let me know if I’ve b0rked it somewhere.&lt;/p&gt;
+
+&lt;p&gt;Props to Mr. Doob and his &lt;a href=&quot;http://mrdoob.com/projects/code-editor/&quot;&gt;code editor&lt;/a&gt;, from which
+the inspiration to this, and some handy implementation hints, came.&lt;/p&gt;
+
+&lt;h3 id=&quot;stuff-used-to-make-this&quot;&gt;Stuff used to make this:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/markdown-it/markdown-it&quot;&gt;markdown-it&lt;/a&gt; for Markdown parsing&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://codemirror.net/&quot;&gt;CodeMirror&lt;/a&gt; for the awesome syntax-highlighted editor&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://softwaremaniacs.org/soft/highlight/en/&quot;&gt;highlight.js&lt;/a&gt; for syntax highlighting in output code blocks&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/dankogai/js-deflate&quot;&gt;js-deflate&lt;/a&gt; for gzipping of data to make it fit in URLs&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+            <pubDate>Sat, 29 Apr 2017 23:20:26 +0200</pubDate>
+            <link>http://localhost:4000#/2017/04/29/workshop.html</link>
+            <guid isPermaLink="true">http://localhost:4000#/2017/04/29/workshop.html</guid>
+            
+            
+        </item>
+        
+        <item>
+            <title>I scream</title>
+            <description>&lt;h3 id=&quot;dolor-sit-amet&quot;&gt;Dolor sit amet?&lt;/h3&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vestibulum non mi non pulvinar. Donec tempus risus vel ex fringilla tempor. Vivamus pharetra non mauris quis fermentum. Vestibulum sed maximus elit, sit amet suscipit orci. Morbi at enim at libero dignissim egestas vel ac nisi. Etiam at lectus a arcu sodales consequat. Aliquam consequat ligula sed purus tincidunt, a ultrices nibh dapibus. Phasellus convallis ipsum nec semper ultricies. In facilisis lacus velit, sit amet lacinia velit blandit id. Nullam ut magna erat. Aliquam sit amet dapibus odio, aliquet tempus tortor. Donec in nisi massa.&lt;/p&gt;
+
+&lt;h3 id=&quot;aliquam-suscipit&quot;&gt;Aliquam suscipit.&lt;/h3&gt;
+&lt;p&gt;Cras eget nisl accumsan, porta nisl in, egestas sapien. Vestibulum gravida nulla sed facilisis tempor. Suspendisse maximus nisi sit amet velit sodales fringilla. Vivamus luctus risus eget dui consectetur porttitor. Maecenas ut ultrices orci. Maecenas mollis est eu sodales mollis. Nulla facilisi. Suspendisse eros arcu, elementum sed sem eu, pharetra rhoncus odio. Proin nec tincidunt velit. Cras nisl augue, faucibus sed mauris in, vestibulum mollis nisl. Nam id libero ultrices, consequat ex vitae, convallis nulla.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse lorem odio, blandit at nisl quis, hendrerit tempus tellus. Donec eget leo quis nisi vulputate consectetur. Praesent dignissim enim elit, congue luctus nisl cursus at. Sed rutrum molestie risus. Donec vulputate gravida accumsan. Vivamus tempus ullamcorper eleifend. Sed sagittis mi ut dolor tincidunt, ac rutrum nisi commodo.&lt;/p&gt;
+
+&lt;p&gt;Fusce non elit in diam rutrum vestibulum. Donec vitae elementum erat. Praesent elementum eget justo at bibendum. Fusce interdum diam lorem, ut placerat elit pretium quis. Quisque eu urna at quam commodo sagittis. Etiam posuere convallis tincidunt. Phasellus vitae ligula neque. Vivamus a purus at dolor iaculis placerat. Curabitur convallis eu lacus congue sagittis.&lt;/p&gt;
+
+&lt;p&gt;Aliquam suscipit fermentum mauris a accumsan. In facilisis, mauris quis pulvinar tempus, turpis sapien sodales nibh, nec feugiat augue est quis nisi. Fusce eget odio feugiat, luctus quam et, dapibus nulla. Sed ornare lacus non libero lacinia pretium. In eu dui vitae purus euismod feugiat ac ac est. Morbi vitae pretium lorem, non eleifend felis. Nullam at massa feugiat, rutrum elit at, semper lacus. Etiam vel rutrum felis. Nullam quis auctor lorem, et tempor arcu.&lt;/p&gt;
+</description>
+            <pubDate>Fri, 24 Apr 2015 14:12:12 +0200</pubDate>
+            <link>http://localhost:4000#/2015/04/24/i-scream.html</link>
+            <guid isPermaLink="true">http://localhost:4000#/2015/04/24/i-scream.html</guid>
+            
+            
+        </item>
+        
+        <item>
+            <title>Absense of light</title>
+            <description>&lt;h3 id=&quot;dolor-sit-amet&quot;&gt;Dolor sit amet?&lt;/h3&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vestibulum non mi non pulvinar. Donec tempus risus vel ex fringilla tempor. Vivamus pharetra non mauris quis fermentum. Vestibulum sed maximus elit, sit amet suscipit orci. Morbi at enim at libero dignissim egestas vel ac nisi. Etiam at lectus a arcu sodales consequat. Aliquam consequat ligula sed purus tincidunt, a ultrices nibh dapibus. Phasellus convallis ipsum nec semper ultricies. In facilisis lacus velit, sit amet lacinia velit blandit id. Nullam ut magna erat. Aliquam sit amet dapibus odio, aliquet tempus tortor. Donec in nisi massa.&lt;/p&gt;
+
+&lt;h3 id=&quot;aliquam-suscipit&quot;&gt;Aliquam suscipit.&lt;/h3&gt;
+&lt;p&gt;Cras eget nisl accumsan, porta nisl in, egestas sapien. Vestibulum gravida nulla sed facilisis tempor. Suspendisse maximus nisi sit amet velit sodales fringilla. Vivamus luctus risus eget dui consectetur porttitor. Maecenas ut ultrices orci. Maecenas mollis est eu sodales mollis. Nulla facilisi. Suspendisse eros arcu, elementum sed sem eu, pharetra rhoncus odio. Proin nec tincidunt velit. Cras nisl augue, faucibus sed mauris in, vestibulum mollis nisl. Nam id libero ultrices, consequat ex vitae, convallis nulla.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse lorem odio, blandit at nisl quis, hendrerit tempus tellus. Donec eget leo quis nisi vulputate consectetur. Praesent dignissim enim elit, congue luctus nisl cursus at. Sed rutrum molestie risus. Donec vulputate gravida accumsan. Vivamus tempus ullamcorper eleifend. Sed sagittis mi ut dolor tincidunt, ac rutrum nisi commodo.&lt;/p&gt;
+
+&lt;p&gt;Fusce non elit in diam rutrum vestibulum. Donec vitae elementum erat. Praesent elementum eget justo at bibendum. Fusce interdum diam lorem, ut placerat elit pretium quis. Quisque eu urna at quam commodo sagittis. Etiam posuere convallis tincidunt. Phasellus vitae ligula neque. Vivamus a purus at dolor iaculis placerat. Curabitur convallis eu lacus congue sagittis.&lt;/p&gt;
+
+&lt;p&gt;Aliquam suscipit fermentum mauris a accumsan. In facilisis, mauris quis pulvinar tempus, turpis sapien sodales nibh, nec feugiat augue est quis nisi. Fusce eget odio feugiat, luctus quam et, dapibus nulla. Sed ornare lacus non libero lacinia pretium. In eu dui vitae purus euismod feugiat ac ac est. Morbi vitae pretium lorem, non eleifend felis. Nullam at massa feugiat, rutrum elit at, semper lacus. Etiam vel rutrum felis. Nullam quis auctor lorem, et tempor arcu.&lt;/p&gt;
+</description>
+            <pubDate>Thu, 23 Apr 2015 14:12:12 +0200</pubDate>
+            <link>http://localhost:4000#/2015/04/23/night-sky.html</link>
+            <guid isPermaLink="true">http://localhost:4000#/2015/04/23/night-sky.html</guid>
+            
+            
+        </item>
+        
+        <item>
+            <title>Watches</title>
+            <description>&lt;h3 id=&quot;dolor-sit-amet&quot;&gt;Dolor sit amet?&lt;/h3&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vestibulum non mi non pulvinar. Donec tempus risus vel ex fringilla tempor. Vivamus pharetra non mauris quis fermentum. Vestibulum sed maximus elit, sit amet suscipit orci. Morbi at enim at libero dignissim egestas vel ac nisi. Etiam at lectus a arcu sodales consequat. Aliquam consequat ligula sed purus tincidunt, a ultrices nibh dapibus. Phasellus convallis ipsum nec semper ultricies. In facilisis lacus velit, sit amet lacinia velit blandit id. Nullam ut magna erat. Aliquam sit amet dapibus odio, aliquet tempus tortor. Donec in nisi massa.&lt;/p&gt;
+
+&lt;h3 id=&quot;aliquam-suscipit&quot;&gt;Aliquam suscipit.&lt;/h3&gt;
+&lt;p&gt;Cras eget nisl accumsan, porta nisl in, egestas sapien. Vestibulum gravida nulla sed facilisis tempor. Suspendisse maximus nisi sit amet velit sodales fringilla. Vivamus luctus risus eget dui consectetur porttitor. Maecenas ut ultrices orci. Maecenas mollis est eu sodales mollis. Nulla facilisi. Suspendisse eros arcu, elementum sed sem eu, pharetra rhoncus odio. Proin nec tincidunt velit. Cras nisl augue, faucibus sed mauris in, vestibulum mollis nisl. Nam id libero ultrices, consequat ex vitae, convallis nulla.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse lorem odio, blandit at nisl quis, hendrerit tempus tellus. Donec eget leo quis nisi vulputate consectetur. Praesent dignissim enim elit, congue luctus nisl cursus at. Sed rutrum molestie risus. Donec vulputate gravida accumsan. Vivamus tempus ullamcorper eleifend. Sed sagittis mi ut dolor tincidunt, ac rutrum nisi commodo.&lt;/p&gt;
+
+&lt;p&gt;Fusce non elit in diam rutrum vestibulum. Donec vitae elementum erat. Praesent elementum eget justo at bibendum. Fusce interdum diam lorem, ut placerat elit pretium quis. Quisque eu urna at quam commodo sagittis. Etiam posuere convallis tincidunt. Phasellus vitae ligula neque. Vivamus a purus at dolor iaculis placerat. Curabitur convallis eu lacus congue sagittis.&lt;/p&gt;
+
+&lt;p&gt;Aliquam suscipit fermentum mauris a accumsan. In facilisis, mauris quis pulvinar tempus, turpis sapien sodales nibh, nec feugiat augue est quis nisi. Fusce eget odio feugiat, luctus quam et, dapibus nulla. Sed ornare lacus non libero lacinia pretium. In eu dui vitae purus euismod feugiat ac ac est. Morbi vitae pretium lorem, non eleifend felis. Nullam at massa feugiat, rutrum elit at, semper lacus. Etiam vel rutrum felis. Nullam quis auctor lorem, et tempor arcu.&lt;/p&gt;
+</description>
+            <pubDate>Wed, 22 Apr 2015 14:12:12 +0200</pubDate>
+            <link>http://localhost:4000#/2015/04/22/what-time.html</link>
+            <guid isPermaLink="true">http://localhost:4000#/2015/04/22/what-time.html</guid>
+            
+            
+        </item>
+        
+        <item>
+            <title>Nobody else was around.</title>
+            <description>&lt;h3 id=&quot;dolor-sit-amet&quot;&gt;Dolor sit amet?&lt;/h3&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vestibulum non mi non pulvinar. Donec tempus risus vel ex fringilla tempor. Vivamus pharetra non mauris quis fermentum. Vestibulum sed maximus elit, sit amet suscipit orci. Morbi at enim at libero dignissim egestas vel ac nisi. Etiam at lectus a arcu sodales consequat. Aliquam consequat ligula sed purus tincidunt, a ultrices nibh dapibus. Phasellus convallis ipsum nec semper ultricies. In facilisis lacus velit, sit amet lacinia velit blandit id. Nullam ut magna erat. Aliquam sit amet dapibus odio, aliquet tempus tortor. Donec in nisi massa.&lt;/p&gt;
+
+&lt;h3 id=&quot;aliquam-suscipit&quot;&gt;Aliquam suscipit.&lt;/h3&gt;
+&lt;p&gt;Cras eget nisl accumsan, porta nisl in, egestas sapien. Vestibulum gravida nulla sed facilisis tempor. Suspendisse maximus nisi sit amet velit sodales fringilla. Vivamus luctus risus eget dui consectetur porttitor. Maecenas ut ultrices orci. Maecenas mollis est eu sodales mollis. Nulla facilisi. Suspendisse eros arcu, elementum sed sem eu, pharetra rhoncus odio. Proin nec tincidunt velit. Cras nisl augue, faucibus sed mauris in, vestibulum mollis nisl. Nam id libero ultrices, consequat ex vitae, convallis nulla.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse lorem odio, blandit at nisl quis, hendrerit tempus tellus. Donec eget leo quis nisi vulputate consectetur. Praesent dignissim enim elit, congue luctus nisl cursus at. Sed rutrum molestie risus. Donec vulputate gravida accumsan. Vivamus tempus ullamcorper eleifend. Sed sagittis mi ut dolor tincidunt, ac rutrum nisi commodo.&lt;/p&gt;
+
+&lt;p&gt;Fusce non elit in diam rutrum vestibulum. Donec vitae elementum erat. Praesent elementum eget justo at bibendum. Fusce interdum diam lorem, ut placerat elit pretium quis. Quisque eu urna at quam commodo sagittis. Etiam posuere convallis tincidunt. Phasellus vitae ligula neque. Vivamus a purus at dolor iaculis placerat. Curabitur convallis eu lacus congue sagittis.&lt;/p&gt;
+
+&lt;p&gt;Aliquam suscipit fermentum mauris a accumsan. In facilisis, mauris quis pulvinar tempus, turpis sapien sodales nibh, nec feugiat augue est quis nisi. Fusce eget odio feugiat, luctus quam et, dapibus nulla. Sed ornare lacus non libero lacinia pretium. In eu dui vitae purus euismod feugiat ac ac est. Morbi vitae pretium lorem, non eleifend felis. Nullam at massa feugiat, rutrum elit at, semper lacus. Etiam vel rutrum felis. Nullam quis auctor lorem, et tempor arcu.&lt;/p&gt;
+</description>
+            <pubDate>Tue, 21 Apr 2015 14:12:12 +0200</pubDate>
+            <link>http://localhost:4000#/2015/04/21/city-nights.html</link>
+            <guid isPermaLink="true">http://localhost:4000#/2015/04/21/city-nights.html</guid>
+            
+            
+        </item>
+        
+        <item>
+            <title>Planes are cool!</title>
+            <description>&lt;h3 id=&quot;dolor-sit-amet&quot;&gt;Dolor sit amet?&lt;/h3&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vestibulum non mi non pulvinar. Donec tempus risus vel ex fringilla tempor. Vivamus pharetra non mauris quis fermentum. Vestibulum sed maximus elit, sit amet suscipit orci. Morbi at enim at libero dignissim egestas vel ac nisi. Etiam at lectus a arcu sodales consequat. Aliquam consequat ligula sed purus tincidunt, a ultrices nibh dapibus. Phasellus convallis ipsum nec semper ultricies. In facilisis lacus velit, sit amet lacinia velit blandit id. Nullam ut magna erat. Aliquam sit amet dapibus odio, aliquet tempus tortor. Donec in nisi massa.&lt;/p&gt;
+
+&lt;h3 id=&quot;aliquam-suscipit&quot;&gt;Aliquam suscipit.&lt;/h3&gt;
+&lt;p&gt;Cras eget nisl accumsan, porta nisl in, egestas sapien. Vestibulum gravida nulla sed facilisis tempor. Suspendisse maximus nisi sit amet velit sodales fringilla. Vivamus luctus risus eget dui consectetur porttitor. Maecenas ut ultrices orci. Maecenas mollis est eu sodales mollis. Nulla facilisi. Suspendisse eros arcu, elementum sed sem eu, pharetra rhoncus odio. Proin nec tincidunt velit. Cras nisl augue, faucibus sed mauris in, vestibulum mollis nisl. Nam id libero ultrices, consequat ex vitae, convallis nulla.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse lorem odio, blandit at nisl quis, hendrerit tempus tellus. Donec eget leo quis nisi vulputate consectetur. Praesent dignissim enim elit, congue luctus nisl cursus at. Sed rutrum molestie risus. Donec vulputate gravida accumsan. Vivamus tempus ullamcorper eleifend. Sed sagittis mi ut dolor tincidunt, ac rutrum nisi commodo.&lt;/p&gt;
+
+&lt;p&gt;Fusce non elit in diam rutrum vestibulum. Donec vitae elementum erat. Praesent elementum eget justo at bibendum. Fusce interdum diam lorem, ut placerat elit pretium quis. Quisque eu urna at quam commodo sagittis. Etiam posuere convallis tincidunt. Phasellus vitae ligula neque. Vivamus a purus at dolor iaculis placerat. Curabitur convallis eu lacus congue sagittis.&lt;/p&gt;
+
+&lt;p&gt;Aliquam suscipit fermentum mauris a accumsan. In facilisis, mauris quis pulvinar tempus, turpis sapien sodales nibh, nec feugiat augue est quis nisi. Fusce eget odio feugiat, luctus quam et, dapibus nulla. Sed ornare lacus non libero lacinia pretium. In eu dui vitae purus euismod feugiat ac ac est. Morbi vitae pretium lorem, non eleifend felis. Nullam at massa feugiat, rutrum elit at, semper lacus. Etiam vel rutrum felis. Nullam quis auctor lorem, et tempor arcu.&lt;/p&gt;
+</description>
+            <pubDate>Mon, 20 Apr 2015 14:12:12 +0200</pubDate>
+            <link>http://localhost:4000#/2015/04/20/planes.html</link>
+            <guid isPermaLink="true">http://localhost:4000#/2015/04/20/planes.html</guid>
+            
+            
+        </item>
+        
+    </channel>
+</rss>

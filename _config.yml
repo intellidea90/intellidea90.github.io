@@ -1,7 +1,7 @@
 # Site settings
-title: Moitree & Pradipta's blog
-description: A blog for 
-keywords: Machine Learning, Deep Learning, Computer Vision, Speech Processing, Natural Language Processing, Machine Translation
-author: Moitree Basu and Pradipta Deb
+title: Modern Blog
+description: Modern-Blog A Elegant template for Jekyll
+keywords: Modern, Blogging, Fun
+author: Wferr
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "" # the base hostname & protocol for your site
